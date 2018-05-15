@@ -44,14 +44,8 @@
 
 
 			if("freedom")//18+5=23
-				var/obj/item/weapon/implanter/O = new /obj/item/weapon/implanter(src)
-				O.imp = new /obj/item/weapon/implant/freedom(O)
-				O.update()
-				O.name= "Freedom"
-				var/obj/item/weapon/implanter/U = new /obj/item/weapon/implanter(src)
-				U.imp = new /obj/item/weapon/implant/uplink(U)
-				U.update()
-				U.name = "Uplink"
+				new /obj/item/implanter/freedom(src)
+				new /obj/item/implanter/syndicate_uplink(src)
 
 
 			if("hacker")//14+6+5+3=28
@@ -130,8 +124,8 @@
 				new /obj/item/clothing/accessory/storage/bandolier(src)
 
 			if("anarchist")//14+14+6=34, plus molotovs
-				new /obj/item/weapon/implanter/traitor(src)
-				new /obj/item/weapon/implanter/traitor(src)
+				new /obj/item/implanter/disloyalty(src)
+				new /obj/item/implanter/disloyalty(src)
 				new /obj/item/clothing/mask/bandana/red(src)
 				new /obj/item/clothing/mask/bandana/red(src)
 				new /obj/item/clothing/mask/bandana/red(src)
@@ -159,16 +153,16 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom/New()
 	..()
-	var/obj/item/weapon/implanter/O = new(src)
-	O.imp = new /obj/item/weapon/implant/freedom(O)
-	O.update()
+	var/obj/item/implanter/O = new(src)
+	O.implant_cur = new /obj/item/implant/freedom(O)
+	O.implanter_update()
 	return
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress
 	name = "box (C)"
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress/New()
-	new /obj/item/weapon/implanter/compressed(src)
+	new /obj/item/implanter/compressed(src)
 	..()
 	return
 
@@ -176,7 +170,7 @@
 	name = "box (E)"
 
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive/New()
-	new /obj/item/weapon/implanter/explosive(src)
+	new /obj/item/implanter/explosive(src)
 	..()
 	return
 
@@ -185,9 +179,9 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink/New()
 	..()
-	var/obj/item/weapon/implanter/O = new(src)
-	O.imp = new /obj/item/weapon/implant/uplink(O)
-	O.update()
+	var/obj/item/implanter/O = new(src)
+	O.implant_cur = new /obj/item/implant/syndicate_uplink(O)
+	O.implanter_update()
 	return
 
 /obj/item/weapon/storage/box/syndie_kit/space
@@ -222,8 +216,8 @@
 
 	New()
 		..()
-		new /obj/item/weapon/implanter/traitor(src)
-		new /obj/item/weapon/implanter/traitor(src)
+		new /obj/item/implanter/disloyalty(src)
+		new /obj/item/implanter/disloyalty(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud/syndishades(src)
 
 /obj/item/weapon/storage/box/syndie_kit/boolets

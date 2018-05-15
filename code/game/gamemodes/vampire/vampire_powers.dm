@@ -432,12 +432,12 @@
 		to_chat(src, "<span class ='warning'> You cannot do this while restrained! </span>")
 		return 0
 	if(!(VAMP_CHARISMA in mind.vampire.powers)) //Charisma allows implanted targets to be enthralled.
-		for(var/obj/item/weapon/implant/loyalty/L in C)
-			if(L && L.implanted)
+		for(var/obj/item/implant/loyalty/L in C)
+			if(L && L.implant_parent)
 				enthrall_safe = 1
 				break
-		for(var/obj/item/weapon/implant/traitor/T in C)
-			if(T && T.implanted)
+		for(var/obj/item/implant/disloyalty/T in C)
+			if(T && T.implant_parent)
 				enthrall_safe = 1
 				break
 	if(!C)

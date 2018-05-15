@@ -19,7 +19,7 @@
 	light_color = LIGHT_COLOR_GREEN
 	light_range_on = 3
 	light_power_on = 2
-	var/known_implants = list(/obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking)
+	var/known_implants = list(/obj/item/implant/chemical, /obj/item/implant/loyalty, /obj/item/implant/tracking)
 	var/delete
 	var/temphtml
 	flags = FPRINT | HEAR

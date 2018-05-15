@@ -365,7 +365,7 @@
 	desc = "Used to give a security cyborg supervisory enforcement tools."
 	icon_state = "mcontroller"
 	required_module = list(/obj/item/weapon/robot_module/security, /obj/item/weapon/robot_module/tg17355)
-	modules_to_add = list(/obj/item/weapon/batteringram, /obj/item/weapon/implanter/cyborg, /obj/item/weapon/card/robot/security, /obj/item/weapon/wrench)
+	modules_to_add = list(/obj/item/weapon/batteringram, /obj/item/implanter/cyborg, /obj/item/weapon/card/robot/security, /obj/item/weapon/wrench)
 
 /obj/item/borg/upgrade/warden/attempt_action(var/mob/living/silicon/robot/R,var/mob/living/user)
 	if(..())

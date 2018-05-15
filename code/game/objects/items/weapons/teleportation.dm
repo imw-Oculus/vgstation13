@@ -79,28 +79,29 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>Extranneous Signals:</B><BR>"
-				for (var/obj/item/weapon/implant/tracking/W in world)
-					if (!W.implanted || !(istype(W.loc,/datum/organ/external) || ismob(W.loc)))
-						continue
-					else
-						var/mob/M = W.loc
-						if (M.stat == 2)
-							if (M.timeofdeath + 6000 < world.time)
-								continue
+				if (implant_controller)
+					for (var/obj/item/implant/tracking/W in implant_controller.implants_tracked)
+						if (!W.implant_parent || !W.implant_parent.owner ||!istype(W, /obj/item/implant/tracking) )
+							continue
+						else
+							var/mob/M = W.loc
+							if (M.stat == 2)
+								if (M.timeofdeath + 6000 < world.time)
+									continue
 
-					var/turf/tr = get_turf(W)
-					if (tr.z == sr.z && tr)
-						var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
-						switch (direct)
-							if (0 to 5)
-								direct = "very strong"
-							if (5 to 10)
-								direct = "strong"
-							if (10 to 20)
-								direct = "weak"
-							else
-								direct = "very weak"
-						src.temp += "[W.id]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
+						var/turf/tr = get_turf(W)
+						if (tr.z == sr.z && tr)
+							var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
+							switch (direct)
+								if (0 to 5)
+									direct = "very strong"
+								if (5 to 10)
+									direct = "strong"
+								if (10 to 20)
+									direct = "weak"
+								else
+									direct = "very weak"
+							src.temp += "[W.implant_id]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>You are at \[[sr.x-WORLD_X_OFFSET[sr.z]],[sr.y-WORLD_Y_OFFSET[sr.z]],[sr.z]\]</B> in orbital coordinates.<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
 			else

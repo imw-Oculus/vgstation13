@@ -413,7 +413,7 @@
 	..()
 
 	// /vg/ #11: Recursion.
-	/*if(istype(W,/obj/item/weapon/implanter/compressed))
+	/*if(istype(W,/obj/item/implanter/compressed))
 		return*/
 
 	if(isrobot(user))

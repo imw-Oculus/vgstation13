@@ -141,9 +141,10 @@ mob/proc/remove_internal_organ()
 	return 0
 
 /proc/isloyal(A) //Checks to see if the person contains a loyalty implant, then checks that the implant is actually inside of them
-	for(var/obj/item/weapon/implant/loyalty/L in A)
-		if(L && L.implanted)
-			return 1
+	for (var/obj/item/implant/loyalty/L in A)
+		if (L && L.implant_parent)
+			if (L.implant_parent.owner == A)
+				return 1
 	return 0
 
 /proc/check_holy(var/mob/A) //checks to see if the tile the mob stands on is holy

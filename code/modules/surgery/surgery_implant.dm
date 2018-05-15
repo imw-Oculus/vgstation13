@@ -154,10 +154,12 @@
 	affected.hidden = tool
 	tool.forceMove(target)
 
-	if(istype(tool, /obj/item/weapon/implant))
-		var/obj/item/weapon/implant/disobj = tool
-		disobj.part = affected
-		affected.implants += disobj
+	if(istype(tool, /obj/item/implant))
+		var/obj/item/implant/tar_implant = tool
+		tar_implant.implant_parent = affected
+		affected.implants += tar_implant
+		tar_implant.on_add()
+
 	affected.cavity = 0
 
 /datum/surgery_step/cavity/place_item/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -194,72 +196,55 @@
 
 /datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
-
-	var/find_prob = 0
+	var/find_prob = 50
 
 	if(istype(tool, /obj/item/weapon/hemostat/pico))
-		find_prob +=100
+		find_prob = 100
 
-	if (affected.implants.len)
+	if (!affected.implants)
+		user.visible_message("<span class='notice'>You could not find anything inside [target]'s [affected.display_name].</span>" )
+		return
 
-		var/obj/item/obj = affected.implants[1]
+	var/obj/item/tar_obj = affected.implants[0]
+	var/obj/item/implant/tar_implant = null
 
-		if(istype(obj,/obj/item/weapon/implant))
-			var/obj/item/weapon/implant/imp = obj
-			if (imp.islegal())
-				find_prob +=60
-			else
-				find_prob +=40
-		else
-			find_prob +=50
+	if (istype(tar_obj, /obj/item/implant) )
+		tar_implant = tar_obj
 
-		if (prob(find_prob))
-			user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
-			"<span class='notice'>You take [obj] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>" )
-			affected.implants -= obj
+	if (tar_implant)
+		if (find_prob != 100)
+			find_prob = tar_implant.implant_stealth
 
-			//Handle possessive brain borers.
-			if(istype(obj,/mob/living/simple_animal/borer))
-				var/mob/living/simple_animal/borer/worm = obj
-				if(worm.controlling)
-					target.release_control()
-				worm.detach()
+	if (!prob(find_prob) )
+		user.visible_message("<span class='notice'>You could not find anything inside [target]'s [affected.display_name].</span>" )
+		return
 
-			obj.forceMove(get_turf(target))
-			if(istype(obj,/obj/item/weapon/implant))
-				var/obj/item/weapon/implant/imp = obj
-				imp.imp_in = null
-				imp.implanted = 0
-				affected.implants -= imp
-				target.contents -= imp
-		else
-			user.visible_message("<span class='notice'>[user] removes \the [tool] from [target]'s [affected.display_name].</span>", \
-			"<span class='notice'>There's something inside [target]'s [affected.display_name], but you just missed it this time.</span>" )
-	else if (affected.hidden)
-		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
-		"<span class='notice'>You take something out of incision on [target]'s [affected.display_name]s with \the [tool].</span>" )
-		affected.hidden.forceMove(get_turf(target))
-		if(!affected.hidden.blood_DNA)
-			affected.hidden.blood_DNA = list()
-		affected.hidden.blood_DNA[target.dna.unique_enzymes] = target.dna.b_type
-		affected.hidden.update_icon()
-		affected.hidden = null
+	user.visible_message("<span class='notice'>You take [tar_obj] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>" )
 
-	else
-		user.visible_message("<span class='notice'>[user] could not find anything inside [target]'s [affected.display_name], and pulls \the [tool] out.</span>", \
-		"<span class='notice'>You could not find anything inside [target]'s [affected.display_name].</span>" )
+	if (tar_implant)
+		tar_implant.on_remove()
+		return
+
+	if(istype(tar_obj,/mob/living/simple_animal/borer))
+		var/mob/living/simple_animal/borer/worm = tar_obj
+		if(worm.controlling)
+			target.release_control()
+		worm.detach()
+
+	tar_obj.forceMove(get_turf(target))
+	affected.implants.Remove(tar_obj)
 
 /datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>")
 	affected.createwound(CUT, 20)
-	if (affected.implants.len)
+	if (affected.implants)
 		var/fail_prob = 10
 		fail_prob += 100 - tool_quality(tool)
 		if (prob(fail_prob))
-			var/obj/item/weapon/implant/imp = affected.implants[1]
+			var/obj/item/implant/imp = affected.implants[0]
 			user.visible_message("<span class='warning'>Something beeps inside [target]'s [affected.display_name]!</span>")
 			playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)
-				imp.activate()
+				imp.implant_activate()

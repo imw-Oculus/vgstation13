@@ -193,12 +193,12 @@
 			else
 				dat += {"<br><font size=1><a href='byond://?src=\ref[src];del_rec=1'>Edit Record</a></font><br>
 					<b>Name:</b> [src.active_record.dna.real_name && src.active_record.dna.real_name != "" ? src.active_record.dna.real_name : "Unknown"]<br>"}
-				var/obj/item/weapon/implant/health/H = null
+				var/obj/item/implant/health/H = null
 				if(src.active_record.implant)
 					H=locate(src.active_record.implant)
 
 				if ((H) && (istype(H)))
-					dat += "<b>Health:</b> [H.sensehealth()] | OXY-BURN-TOX-BRUTE<br>"
+					dat += "<b>Health:</b> [H.track_health] | OXY-BURN-TOX-BRUTE<br>"
 				else
 					dat += "<font color=red>Unable to locate implant.</font><br>"
 
@@ -492,16 +492,6 @@
 	R.types=DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = subject.languages.Copy()
 	R.times_cloned = subject.times_cloned
-
-	//Add an implant if needed
-	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
-	if (isnull(imp))
-		imp = new /obj/item/weapon/implant/health(subject)
-		imp.implanted = subject
-		R.implant = "\ref[imp]"
-	//Update it if needed
-	else
-		R.implant = "\ref[imp]"
 
 	if (!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
 		R.mind = "\ref[subject.mind]"

@@ -1295,8 +1295,8 @@
 			return global.moneytypes;
 		if("cached_icons")
 			return global.cached_icons;
-		if("tracking_implants")
-			return global.tracking_implants;
+		if("implant_controller")
+			return global.implant_controller;
 		if("bottle_colour_choices")
 			return global.bottle_colour_choices;
 		if("hidden_doors")
@@ -3200,8 +3200,8 @@
 			global.moneytypes=newval
 		if("cached_icons")
 			global.cached_icons=newval
-		if("tracking_implants")
-			global.tracking_implants=newval
+		if("implant_controller")
+			global.implant_controller =newval
 		if("bottle_colour_choices")
 			global.bottle_colour_choices=newval
 		if("hidden_doors")

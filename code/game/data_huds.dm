@@ -106,15 +106,19 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode,var/mob/eye)
 		C.images += holder
 
 		if(advanced_mode) //If set, the SecHUD will display the implants a person has.
-			for(var/obj/item/weapon/implant/I in perp)
-				if(I.implanted)
-					if(istype(I,/obj/item/weapon/implant/tracking))
+			for(var/obj/item/implant/I in perp)
+				if (!I.implant_parent)
+					continue
+				if (!I.implant_parent.owner)
+					continue
+				if(I.implant_parent.owner)
+					if(istype(I,/obj/item/implant/tracking))
 						holder = perp.hud_list[IMPTRACK_HUD]
 						holder.icon_state = "hud_imp_tracking"
-					else if(istype(I,/obj/item/weapon/implant/loyalty))
+					else if(istype(I,/obj/item/implant/loyalty))
 						holder = perp.hud_list[IMPLOYAL_HUD]
 						holder.icon_state = "hud_imp_loyal"
-					else if(istype(I,/obj/item/weapon/implant/chem))
+					else if(istype(I,/obj/item/implant/chemical))
 						holder = perp.hud_list[IMPCHEM_HUD]
 						holder.icon_state = "hud_imp_chem"
 					else

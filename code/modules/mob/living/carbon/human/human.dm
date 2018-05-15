@@ -264,7 +264,7 @@
 
 /mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
 	for(var/L in M.contents)
-		if(istype(L, /obj/item/weapon/implant/loyalty))
+		if(istype(L, /obj/item/implant/loyalty))
 			for(var/datum/organ/external/O in M.organs)
 				if(L in O.implants)
 					return 1
@@ -1045,7 +1045,7 @@
 	var/list/visible_implants = list()
 	for(var/datum/organ/external/organ in src.organs)
 		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && (O.w_class > class) && !istype(O,/obj/item/weapon/shard/shrapnel))
+			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/weapon/shard/shrapnel))
 				visible_implants += O
 
 	return(visible_implants)
@@ -1060,7 +1060,7 @@
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
 			continue
 		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
+			if(!istype(O,/obj/item/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				var/msg = null
 				switch(rand(1,3))
@@ -1441,7 +1441,7 @@
 /mob/living/carbon/human/proc/make_all_robot_parts_organic()
 	make_robot_limbs_organic()
 	make_robot_internals_organic()
-	
+
 // Makes all limbs robotic.
 /mob/living/carbon/human/proc/make_organic_limbs_robotic()
 	for(var/datum/organ/external/O in organs)

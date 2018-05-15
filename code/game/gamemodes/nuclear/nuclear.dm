@@ -299,12 +299,11 @@
 	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/laststand(synd_mob), slot_in_backpack) // HOOOOOO HOOHOHOHOHOHO - N3X
 	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/c20r(synd_mob), slot_belt)
 	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(synd_mob.back), slot_in_backpack)
-	var/obj/item/weapon/implant/explosive/E = new/obj/item/weapon/implant/explosive/nuclear(synd_mob)
-	E.imp_in = synd_mob
-	E.implanted = 1
+	var/obj/item/implant/explosive/E = new/obj/item/implant/explosive/nuclear(synd_mob)
+
 	var/datum/organ/external/affected = synd_mob.get_organ(LIMB_HEAD)
+	E.implant_parent = affected
 	affected.implants += E
-	E.part = affected
 	synd_mob.update_icons()
 	return 1
 

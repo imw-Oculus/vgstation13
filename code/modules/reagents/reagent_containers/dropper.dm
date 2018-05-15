@@ -15,7 +15,7 @@
 	                            /obj/item/slime_extract,
 	                            /obj/item/clothing/mask/cigarette,
 	                            /obj/item/weapon/storage/fancy/cigarettes,
-	                            /obj/item/weapon/implantcase/chem,
+	                            /obj/item/implant_case/chemical,
 	                            /obj/item/weapon/reagent_containers/pill/time_release)
 
 /obj/item/weapon/reagent_containers/dropper/update_icon()

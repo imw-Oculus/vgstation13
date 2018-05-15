@@ -33,7 +33,7 @@
 	                            /obj/item/clothing/mask/cigarette,
 	                            /obj/item/weapon/storage/fancy/cigarettes,
 	                            /obj/item/gum,
-	                            /obj/item/weapon/implantcase/chem,
+	                            /obj/item/implant_case/chemical,
 	                            /obj/item/weapon/reagent_containers/pill/time_release,
 	                            /obj/item/clothing/mask/facehugger/lamarr,
 	                            /obj/item/asteroid/hivelord_core,

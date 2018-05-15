@@ -1001,7 +1001,7 @@ datum
 
 			/*Needs some work before it can be put in the game to differentiate ship implanters from syndicate implanters.
 			steal/implanter
-				steal_target = /obj/item/weapon/implanter
+				steal_target = /obj/item/implanter
 				explanation_text = "Steal an implanter"
 				weight = 50
 

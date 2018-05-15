@@ -177,12 +177,10 @@ var/list/response_team_members = list()
 		W.access = get_centcom_access("Emergency Responders Leader")
 		W.icon_state = "ERT_leader"
 	equip_to_slot_or_del(W, slot_wear_id)
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(src)
-	L.imp_in = src
-	L.implanted = 1
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(src)
 	var/datum/organ/external/affected = get_organ(LIMB_HEAD)
 	affected.implants += L
-	L.part = affected
+	L.implant_parent = affected
 
 	return 1
 

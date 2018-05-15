@@ -13,9 +13,10 @@
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 	//var/m_type = VISIBLE
 
-	for (var/obj/item/weapon/implant/I in src)
-		if (I.implanted)
-			I.trigger(act, src)
+	for (var/obj/item/implant/I in src)
+		if (I.implant_parent)
+			if (I.implant_parent.owner)
+				I.emote_trigger(act)
 
 	if(src.stat == 2.0 && (act != "deathgasp"))
 		return

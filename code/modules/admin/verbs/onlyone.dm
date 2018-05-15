@@ -126,7 +126,7 @@
 		to_chat(H, "<B>Objective #[obj_count++]</B>: [OBJ.explanation_text]")
 
 	for (var/obj/item/I in H)
-		if (istype(I, /obj/item/weapon/implant))
+		if (istype(I, /obj/item/implant))
 			continue
 		if(isplasmaman(H)) //Plasmamen don't lose their plasma gear since they need it to live.
 			if(!(istype(I, /obj/item/clothing/suit/space/plasmaman) || istype(I, /obj/item/clothing/head/helmet/space/plasmaman) || istype(I, /obj/item/weapon/tank/plasma/plasmaman) || istype(I, /obj/item/clothing/mask/breath)))
@@ -181,7 +181,7 @@
 		to_chat(H, "<B>Objective #[obj_count++]</B>: [OBJ.explanation_text]")
 
 	for(var/obj/item/I in H)
-		if(!istype(I, /obj/item/weapon/implant))
+		if(!istype(I, /obj/item/implant))
 			qdel(I)
 
 	if(isplasmaman(H))

@@ -516,19 +516,21 @@
 		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 		return 1
 
-/mob/living/carbon/proc/transferImplantsTo(mob/living/carbon/newmob)
-	for(var/obj/item/weapon/implant/I in src)
+/mob/living/carbon/proc/transferImplantsTo(var/mob/living/carbon/newmob)
+	var/mob/living/carbon/human/origin = src
+
+	for(var/obj/item/implant/I in src.contents)
+		if (!istype(newmob, /mob/living/carbon) )
+			qdel(I)
+			continue
+
 		I.forceMove(newmob)
-		I.implanted = 1
-		I.imp_in = newmob
-		if(istype(newmob, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = newmob
-			if(!I.part) //implanted as a nonhuman, won't have one.
-				I.part = /datum/organ/external/chest
-			for (var/datum/organ/external/affected in H.organs)
-				if(!istype(affected, I.part))
-					continue
-				affected.implants += I
+
+		for (var/datum/organ/external/affected in origin.organs)
+			if (I in affected.implants)
+				I.implant_parent = newmob.get_organ(affected)
+				affected.implants.Remove(I)
+				break
 
 /mob/living/carbon/proc/dropBorers(var/gibbed = null)
 	var/list/borer_list = get_brain_worms()

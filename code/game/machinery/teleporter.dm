@@ -147,10 +147,12 @@
 			areaindex[tmpname] = 1
 		L[tmpname] = R
 
-	for (var/obj/item/weapon/implant/tracking/I in tracking_implants)
-		if (!I.implanted || !ismob(I.loc))
+	for (var/obj/item/implant/I in implant_controller.implants_tracked)
+		if (!I.implant_parent || !istype(I, /obj/item/implant/tracking) )
 			continue
 		else
+			if (!I.implant_parent.owner)
+				continue
 			var/mob/M = I.loc
 			if (M.stat == 2)
 				if (M.timeofdeath + 6000 < world.time)

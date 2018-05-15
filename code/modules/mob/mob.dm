@@ -2104,8 +2104,8 @@ mob/proc/on_foot()
 				to_chat(src, "<span class='notice'>[pick("Hey that's dangerous...wouldn't want hurting people.","You don't feel like firing \the [weapon] at \the [target].","Peace, my [gender == FEMALE ? "girl" : "man"]...")]</span>")
 		return 1
 
-	for (var/obj/item/weapon/implant/peace/target_implant in src.contents)
-		if (!target_implant.malfunction && target_implant.imp_alive && target_implant.imp_in == src)
+	for (var/obj/item/implant/peace/target_implant in src.contents)
+		if (!target_implant.implant_state)
 			if (message != VIOLENCE_SILENT)
 				to_chat(src, "<span class='warning'>\The [target_implant] inside you prevents this!</span>")
 			return 1

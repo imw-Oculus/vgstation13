@@ -268,10 +268,9 @@
 /obj/item/weapon/storage/box/trackimp/New()
 	..()
 	for(var/i = 1 to 4)
-		new /obj/item/weapon/implantcase/tracking(src)
-	new /obj/item/weapon/implanter(src)
-	new /obj/item/weapon/implantpad(src)
-	new /obj/item/weapon/locator(src)
+		new /obj/item/implant_case/tracking(src)
+	new /obj/item/implanter/tracking(src)
+
 
 /obj/item/weapon/storage/box/chemimp
 	name = "chemical implant kit"
@@ -281,9 +280,8 @@
 /obj/item/weapon/storage/box/chemimp/New()
 	..()
 	for(var/i = 1 to 5)
-		new /obj/item/weapon/implantcase/chem(src)
-	new /obj/item/weapon/implanter(src)
-	new /obj/item/weapon/implantpad(src)
+		new /obj/item/implant_case/chemical(src)
+	new /obj/item/implanter(src)
 
 /obj/item/weapon/storage/box/bolas
 	name = "bolas box"
@@ -323,9 +321,9 @@
 
 /obj/item/weapon/storage/box/cdeathalarm_kit/New()
 	..()
-	new /obj/item/weapon/implanter(src)
+	new /obj/item/implanter(src)
 	for(var/i = 1 to 7)
-		new /obj/item/weapon/implantcase/death_alarm(src)
+		new /obj/item/implant_case/death_alarm(src)
 
 /obj/item/weapon/storage/box/condimentbottles
 	name = "box of condiment bottles"

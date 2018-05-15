@@ -164,7 +164,7 @@ obj/item/device/mmi/Destroy()
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 		return TRUE
 
-	if(istype(O, /obj/item/weapon/implanter))
+	if(istype(O, /obj/item/implanter))
 		return//toplel
 
 	..()

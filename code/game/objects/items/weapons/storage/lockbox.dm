@@ -140,10 +140,10 @@
 
 /obj/item/weapon/storage/lockbox/loyalty/New()
 	..()
-	new /obj/item/weapon/implantcase/loyalty(src)
-	new /obj/item/weapon/implantcase/loyalty(src)
-	new /obj/item/weapon/implantcase/loyalty(src)
-	new /obj/item/weapon/implanter/loyalty(src)
+	new /obj/item/implant_case/loyalty(src)
+	new /obj/item/implant_case/loyalty(src)
+	new /obj/item/implant_case/loyalty(src)
+	new /obj/item/implanter/loyalty(src)
 
 /obj/item/weapon/storage/lockbox/tracking
 	name = "lockbox (tracking implants)"
@@ -152,11 +152,11 @@
 
 /obj/item/weapon/storage/lockbox/tracking/New()
 	..()
-	new /obj/item/weapon/implantcase/tracking(src)
-	new /obj/item/weapon/implantcase/tracking(src)
-	new /obj/item/weapon/implantcase/tracking(src)
-	new /obj/item/weapon/implantpad(src)
-	new /obj/item/weapon/implanter(src)
+	new /obj/item/implant_case/tracking(src)
+	new /obj/item/implant_case/tracking(src)
+	new /obj/item/implant_case/tracking(src)
+	new /obj/item/implant_pad(src)
+	new /obj/item/implanter(src)
 
 /obj/item/weapon/storage/lockbox/chem
 	name = "lockbox (chemical implants)"
@@ -165,11 +165,11 @@
 
 /obj/item/weapon/storage/lockbox/chem/New()
 	..()
-	new /obj/item/weapon/implantcase/chem(src)
-	new /obj/item/weapon/implantcase/chem(src)
-	new /obj/item/weapon/implantcase/chem(src)
+	new /obj/item/implant_case/chemical(src)
+	new /obj/item/implant_case/chemical(src)
+	new /obj/item/implant_case/chemical(src)
 	new /obj/item/weapon/reagent_containers/syringe(src)
-	new /obj/item/weapon/implanter(src)
+	new /obj/item/implanter(src)
 
 /obj/item/weapon/storage/lockbox/clusterbang
 	name = "lockbox (clusterbang)"

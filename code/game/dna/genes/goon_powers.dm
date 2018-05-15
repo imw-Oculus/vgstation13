@@ -262,9 +262,9 @@
 		for(var/atom/movable/target in view_or_range(range, user, selection_type))
 			if(!is_type_in_list(target, compatible_mobs) && !istype(target, /obj/item))
 				continue
-			if(istype(target, /obj/item/weapon/implant))
-				var/obj/item/weapon/implant/implant = target
-				if(implant.imp_in) //Implanted implant, don't eat that
+			if(istype(target, /obj/item/implant))
+				var/obj/item/implant/implant = target
+				if(implant.implant_parent) //Implanted implant, don't eat that
 					continue
 			targets += target
 	else if(max_targets == 1) //single target can be picked
@@ -278,9 +278,9 @@
 					continue
 				if(!is_type_in_list(M, compatible_mobs) && !istype(M, /obj/item))
 					continue
-				if(istype(M, /obj/item/weapon/implant))
-					var/obj/item/weapon/implant/implant = M
-					if(implant.imp_in) //Implanted implant, don't eat that
+				if(istype(M, /obj/item/implant))
+					var/obj/item/implant/implant = M
+					if(implant.implant_parent) //Implanted implant, don't eat that
 						continue
 				possible_targets += M
 
@@ -298,9 +298,9 @@
 		var/list/possible_targets = list()
 
 		for(var/atom/movable/target in view_or_range(range, user, selection_type))
-			if(istype(target, /obj/item/weapon/implant))
-				var/obj/item/weapon/implant/implant = target
-				if(implant.imp_in) //Implanted implant, don't eat that
+			if(istype(target, /obj/item/implant))
+				var/obj/item/implant/implant = target
+				if(implant.implant_parent) //Implanted implant, don't eat that
 					continue
 			possible_targets += target
 

@@ -203,8 +203,8 @@
 	if(jobban_isbanned(H, "revolutionary"))
 		return ADD_REVOLUTIONARY_FAIL_IS_JOBBANNED
 
-	for(var/obj/item/weapon/implant/loyalty/L in H) // check loyalty implant in the contents
-		if(L.imp_in == H) // a check if it's actually implanted
+	for(var/obj/item/implant/loyalty/L in H) // check loyalty implant in the contents
+		if(L.implant_parent.owner == H) // a check if it's actually implanted
 			return ADD_REVOLUTIONARY_FAIL_IS_IMPLANTED
 
 	if((rev_mind in revolutionaries) || (rev_mind in head_revolutionaries))

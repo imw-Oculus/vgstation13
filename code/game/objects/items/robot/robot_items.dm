@@ -283,21 +283,16 @@ obj/item/borg/stun/attack(mob/M as mob, mob/living/silicon/robot/user as mob)
 //Warden upgrade modules
 #define NEEDED_CHARGE_TO_RESTOCK_IMP 30
 
-/obj/item/weapon/implanter/cyborg
-	name = "cyborg implanter"
-	imp_type = /obj/item/weapon/implant/loyalty
+/obj/item/implanter/cyborg
+	var/obj/item/implant/implant_type = /obj/item/implant/loyalty
 	var/charge = 0
-	
-/obj/item/weapon/implanter/cyborg/update()
-	..()
-	name = "[initial(name)][imp? " - [imp.name]":""]"
 
-/obj/item/weapon/implanter/cyborg/restock()
+/obj/item/implanter/cyborg/restock()
 	charge++
-	if(charge >= NEEDED_CHARGE_TO_RESTOCK_IMP && !imp) //takes about 60 seconds.
-		if(imp_type)
-			imp = new imp_type(src)
-			update()
+	if(charge >= NEEDED_CHARGE_TO_RESTOCK_IMP && !implant_cur) //takes about 60 seconds.
+		if(implant_type)
+			implant_cur = new implant_type(src)
+			implanter_update()
 			charge = initial(charge)
 
 #undef NEEDED_CHARGE_TO_RESTOCK_IMP

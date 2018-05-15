@@ -92,17 +92,13 @@
 	put_in_hands(new /obj/item/weapon/gun/energy/pulse_rifle(src))
 
 
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(src)//Here you go Deuryn
-	L.imp_in = src
-	L.implanted = 1
-	var/obj/item/weapon/implant/explosive/E = new/obj/item/weapon/implant/explosive/nuclear(src)
-	E.imp_in = src
-	E.implanted = 1
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(src)//Here you go Deuryn
+	var/obj/item/implant/explosive/nuclear/E = new/obj/item/implant/explosive/nuclear(src)
 	var/datum/organ/external/affected = get_organ(LIMB_HEAD)
 	affected.implants += L
-	L.part = affected
 	affected.implants += E
-	E.part = affected
+	L.implant_parent = affected
+	E.implant_parent = affected
 	src.update_icons()
 
 

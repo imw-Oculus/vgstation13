@@ -104,7 +104,7 @@
 //			to_chat(world, "[src.name]")
 			var/datum/mind/head = ticker.mode.implanted[mind]
 			//var/list/removal
-			if(!(locate(/obj/item/weapon/implant/traitor) in src.contents))
+			if(!(locate(/obj/item/implant/disloyalty) in src.contents))
 //				to_chat(world, "doesn't have an implant")
 				ticker.mode.remove_traitor_mind(mind, head)
 				/*

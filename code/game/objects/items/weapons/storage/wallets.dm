@@ -18,7 +18,7 @@
 		"/obj/item/weapon/reagent_containers/food/snacks/chococoin",
 		"/obj/item/weapon/dice",
 		"/obj/item/weapon/disk",
-		"/obj/item/weapon/implanter",
+		"/obj/item/implanter",
 		"/obj/item/weapon/lighter",
 		"/obj/item/weapon/match",
 		"/obj/item/weapon/paper",
